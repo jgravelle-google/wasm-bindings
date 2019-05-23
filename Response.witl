@@ -1,0 +1,35 @@
+;; interface Response
+(struct Response
+  (constructor (param BodyInit? (@default null) ResponseInit (@optional)))
+  (method get|type (result ResponseType))
+  (method get|url (result String))
+  (method get|redirected (result Boolean))
+  (method get|status (result Integer))
+  (method get|ok (result Boolean))
+  (method get|statusText (result String))
+  (method get|headers (result Headers))
+  (method get|trailer (result (Promise Headers)))
+
+  (method clone (result Response))
+)
+;; static Response methods
+(func Response|error (result Response))
+(func Response|redirect (param String Integer (@default 302))
+                        (result Response))
+;; TODO: `Response includes Body`?
+
+;; dictionary ResponseInit
+(struct ResponseInit
+  (field status Integer (@default 200))
+  (field statusText String (@default ""))
+  (field headers HeadersInit)
+)
+
+(enum ResponseType
+  basic
+  cors
+  default
+  error
+  opaque
+  opaqueredirect
+)
