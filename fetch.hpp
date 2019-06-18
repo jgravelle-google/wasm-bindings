@@ -5,13 +5,13 @@
 
 #include "json.hpp"
 
+// Promise.webidl
 template <typename T>
 class Promise {
   // ...
 
-  // TODO: look up types for std::function
   template <typename U>
-  Promise<U> then(std::function<T, Promise<U>> f) {
+  Promise<U> then(std::function<U, Promise<T>> f) {
     // ...
   }
 };
@@ -21,10 +21,18 @@ T await(Promise<T> promise) {
   // ...
 }
 
+// Response.webidl
 class Response {
   // ...
 
   Promise<JSON> json();
 };
+
+// Fetch.webidl
+union RequestInfo {
+  Request request;
+  std::string string;
+};
+Promise<Request> fetch(RequestInfo, /*optional*/ RequestInit);
 
 #endif // _FETCH_HPP_
