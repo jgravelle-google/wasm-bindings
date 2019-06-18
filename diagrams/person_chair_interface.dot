@@ -1,0 +1,28 @@
+graph {
+    rankdir="LR"
+    subgraph cluster_A {
+        label="A.wasm"
+        subgraph cluster_Atypes {
+            label="BTypes"
+            person_a [label="Person (i, i)"]
+            chair_a [label="Chair (i, i)"]
+        }
+    }
+    subgraph cluster_B {
+        label="B.wasm"
+        subgraph cluster_Btypes {
+            label="BTypes"
+            person_b [label="Person (i, i)"]
+        }
+    }
+    subgraph cluster_i {
+        label="Interface.wasm"
+        person_i [label="Person (i, i)"]
+        chair_i [label="Chair (i, i)"]
+    }
+    person_i -- person_a
+    person_i -- person_b
+    person_a -- person_b
+    chair_i -- chair_a
+    chair_a -- person_b [label=X color=red]
+}

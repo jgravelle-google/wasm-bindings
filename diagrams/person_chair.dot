@@ -1,0 +1,31 @@
+digraph {
+    rankdir="LR"
+    subgraph cluster_A {
+        label="A.wasm"
+        subgraph cluster_Atypes {
+            label="BTypes"
+            person_a [label="Person: i32, i32"]
+            chair_a [label="Chair: i32, i32"]
+        }
+    }
+
+    subgraph cluster_B {
+        label="B.wasm"
+        subgraph cluster_Btypes {
+            label="BTypes"
+            person_b_im [label="Person"]
+            person_b [label="Person: i32, i32"]
+
+            person_b_im -> person_b //[constraint=false]
+        }
+
+        f1_a [label="getAge: Person -> i32"]
+        f2_a [label="getHeight: Person -> i32"]
+
+        person_b -> f1_a
+        person_b -> f2_a
+    }
+
+    person_a -> person_b_im
+    chair_a -> person_b_im [color=red]
+}
