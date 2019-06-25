@@ -1,0 +1,31 @@
+// Out-of-line approach to bindings generation
+
+struct z_stream {
+  Sequence<Integer> next_in
+  Integer avail_in
+  Sequence<Integer> next_out
+  Integer avail_out
+}
+alias z_streamp = ref z_stream
+
+fn deflateInit(z_streamp, Integer) -> Integer
+fn deflate(z_streamp, Integer) -> Integer
+fn deflateEnd(z_streamp) -> Integer
+
+fn inflateInit(z_streamp) -> Integer
+fn inflate(z_streamp, Integer) -> Integer
+fn inflateEnd(z_streamp) -> Integer
+
+// maybe `enum FlushValues`?
+const Integer Z_NO_FLUSH =      0
+const Integer Z_PARTIAL_FLUSH = 1
+const Integer Z_SYNC_FLUSH =    2
+const Integer Z_FULL_FLUSH =    3
+const Integer Z_FINISH =        4
+const Integer Z_BLOCK =         5
+const Integer Z_TREES =         6
+
+const Integer Z_NO_COMPRESSION =       0
+const Integer Z_BEST_SPEED =           1
+const Integer Z_BEST_COMPRESSION =     9
+const Integer Z_DEFAULT_COMPRESSION = -1
