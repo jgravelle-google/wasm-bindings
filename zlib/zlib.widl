@@ -1,31 +1,36 @@
-// Out-of-line approach to bindings generation
+// Generated bindings description from declarations in zlib_wrapped.h
 
-struct z_stream {
-  Sequence<Integer> next_in
-  Integer avail_in
-  Sequence<Integer> next_out
-  Integer avail_out
-}
-alias z_streamp = ref z_stream
+alias z_streamp = ref;
 
-fn deflateInit(z_streamp, Integer) -> Integer
-fn deflate(z_streamp, Integer) -> Integer
-fn deflateEnd(z_streamp) -> Integer
+fn alloc_z_stream() -> z_streamp;
+fn free_z_stream(z_streamp);
 
-fn inflateInit(z_streamp) -> Integer
-fn inflate(z_streamp, Integer) -> Integer
-fn inflateEnd(z_streamp) -> Integer
+fn get_next_in(z_streamp) -> Sequence<Integer>;
+fn get_avail_in(z_streamp) -> Integer;
+fn get_next_out(z_streamp) -> Sequence<Integer>;
+fn get_avail_out(z_streamp) -> Integer;
+fn set_next_in(z_streamp, Sequence<Integer>);
+fn set_avail_in(z_streamp, Integer);
+fn set_next_out(z_streamp, Sequence<Integer>);
+fn set_avail_out(z_streamp, Integer);
 
-// maybe `enum FlushValues`?
-const Integer Z_NO_FLUSH =      0
-const Integer Z_PARTIAL_FLUSH = 1
-const Integer Z_SYNC_FLUSH =    2
-const Integer Z_FULL_FLUSH =    3
-const Integer Z_FINISH =        4
-const Integer Z_BLOCK =         5
-const Integer Z_TREES =         6
+fn deflateInit(z_streamp, Integer) -> Integer;
+fn deflate(z_streamp, Integer) -> Integer;
+fn deflateEnd(z_streamp) -> Integer;
 
-const Integer Z_NO_COMPRESSION =       0
-const Integer Z_BEST_SPEED =           1
-const Integer Z_BEST_COMPRESSION =     9
-const Integer Z_DEFAULT_COMPRESSION = -1
+fn inflateInit(z_streamp) -> Integer;
+fn inflate(z_streamp, Integer) -> Integer;
+fn inflateEnd(z_streamp) -> Integer;
+
+const Integer Z_NO_FLUSH =      0;
+const Integer Z_PARTIAL_FLUSH = 1;
+const Integer Z_SYNC_FLUSH =    2;
+const Integer Z_FULL_FLUSH =    3;
+const Integer Z_FINISH =        4;
+const Integer Z_BLOCK =         5;
+const Integer Z_TREES =         6;
+
+const Integer Z_NO_COMPRESSION =       0;
+const Integer Z_BEST_SPEED =           1;
+const Integer Z_BEST_COMPRESSION =     9;
+const Integer Z_DEFAULT_COMPRESSION = -1;
