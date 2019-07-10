@@ -8,13 +8,13 @@ typedef struct _z_streamp_obj* z_streamp;
 z_streamp alloc_z_stream(void);
 void free_z_stream(z_streamp);
 
-Sequence get_next_in(z_streamp);
+Sequence_Integer get_next_in(z_streamp);
 Integer get_avail_in(z_streamp);
-Sequence get_next_out(z_streamp);
+Sequence_Integer get_next_out(z_streamp);
 Integer get_avail_out(z_streamp);
-void set_next_in(z_streamp, Sequence);
+void set_next_in(z_streamp, Sequence_Integer);
 void set_avail_in(z_streamp, Integer);
-void set_next_out(z_streamp, Sequence);
+void set_next_out(z_streamp, Sequence_Integer);
 void set_avail_out(z_streamp, Integer);
 
 Integer deflateInit(z_streamp, Integer);

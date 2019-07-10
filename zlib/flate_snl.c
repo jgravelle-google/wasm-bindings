@@ -14,9 +14,9 @@ char* my_compress(char* message) {
   char* buffer = calloc(kMaxSize, sizeof(char));
   z_streamp stream = alloc_z_stream();
   deflateInit(stream, Z_DEFAULT_COMPRESSION);
-  set_next_in(stream, make_sequence(message, strlen(message)));
+  set_next_in(stream, make_sequence_WByte(message, strlen(message)));
   set_avail_in(stream, strlen(message));
-  set_next_out(stream, make_sequence(buffer, kMaxSize));
+  set_next_out(stream, make_sequence_WByte(buffer, kMaxSize));
   set_avail_out(stream, kMaxSize);
   deflate(stream, Z_FINISH);
   deflateEnd(stream);
@@ -28,9 +28,9 @@ char* my_uncompress(char* buffer) {
   char* message = calloc(kMaxSize, sizeof(char));
   z_streamp stream = alloc_z_stream();
   inflateInit(stream);
-  set_next_in(stream, make_sequence(buffer, kMaxSize));
+  set_next_in(stream, make_sequence_WByte(buffer, kMaxSize));
   set_avail_in(stream, strlen(buffer));
-  set_next_out(stream, make_sequence(message, kMaxSize));
+  set_next_out(stream, make_sequence_WByte(message, kMaxSize));
   set_avail_out(stream, kMaxSize);
   inflate(stream, Z_FINISH);
   inflateEnd(stream);
